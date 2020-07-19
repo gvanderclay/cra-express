@@ -13,20 +13,28 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "body-parser": "^1.19.0",
+    "concurrently": "^5.2.0",
     "express": "^4.17.1",
+    "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "ts-loader": "^8.0.1",
     "typescript": "~3.7.2",
+    "wait-on": "^5.1.0",
     "webpack-cli": "^3.3.12",
     "webpack-node-externals": "^2.5.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "concurrently -p name -c \"yellow,magenta,blue\" -n \"webpack-server,nodemon-server,CRA\" \"yarn dev:server:webpack\" \"yarn dev:server:nodemon\" \"yarn dev:client\"",
+    "dev:client": "wait-on -l tcp:3001 && react-scripts start",
+    "dev:server": "concurrently -p name -c \"yellow,magenta\" -n \"webpack-server,nodemon-server\" \"yarn dev:server:webpack\" \"yarn dev:server:nodemon\"",
+    "dev:server:webpack": "webpack --config webpack.config.server.js --watch",
+    "dev:server:nodemon": "rm -f build/server.js && wait-on -l build/server.js && nodemon build/server.js",
+    "build:client": "react-scripts build",
+    "build:server": "webpack --config webpack.config.server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
