@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
-import { sum } from "../core/sum";
+import { sum } from "../core/math";
 
 const buildDir = path.join(process.cwd() + "/build");
 const app = express();
