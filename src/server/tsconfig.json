@@ -9,6 +9,6 @@
     "target": "esnext",
     "moduleResolution": "node"
   },
-  "exclude": ["build"],
+  "exclude": ["../../build", "../client"],
   "include": ["."]
 }
