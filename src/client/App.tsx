@@ -1,23 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { sum } from "../core/sum";
 
 function App() {
+  const [serverResult, setServerResult] = useState<number | null>(null);
+  useEffect(() => {
+    (async () => {
+      const result = await fetch("/ping");
+      const newServerResult = await result.json();
+      setServerResult(newServerResult);
+    })();
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Client result {sum(1, 3)}</p>
+        <p>Server result {serverResult}</p>
       </header>
     </div>
   );

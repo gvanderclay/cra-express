@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
+import { sum } from "../core/sum";
 
 const buildDir = path.join(process.cwd() + "/build");
 const app = express();
@@ -13,7 +14,7 @@ app.use(
 app.use(express.static(buildDir));
 
 app.get("/ping", function (req, res) {
-  return "pong";
+  return res.json(`${sum(10, 4)}`);
 });
 
 app.get("/*", function (req, res) {
