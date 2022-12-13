@@ -14,7 +14,7 @@
     "@types/react-dom": "^16.9.0",
     "body-parser": "^1.19.0",
     "concurrently": "^5.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
